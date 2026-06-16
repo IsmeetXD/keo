@@ -1,0 +1,8 @@
+{
+  "name": "keo",
+  "private": true,
+  "scripts": {
+    "build": "pnpm -r run build",
+    "dev": "pnpm -r run dev"
+  }
+}
