@@ -70,30 +70,30 @@ cp .env.example .env
 ### 2. Setup the Backend
 ```bash
 cd backend
-npm install
+pnpm install
 
 # Set up your backend environment variables
 cp .env.example .env
 # Edit .env and add your PostgreSQL DATABASE_URL and JWT_SECRET
 
 # Push the schema to your database
-npx drizzle-kit push
+pnpm exec drizzle-kit push
 
 # Start the backend server (runs on http://localhost:3001)
-npm run dev
+pnpm run dev
 ```
 
 ### 3. Setup the Frontend
 Open a new terminal window:
 ```bash
 cd frontend
-npm install
+pnpm install
 
 # Set up your frontend environment variables
 cp .env.example .env.local
 
 # Start the frontend dev server (runs on http://localhost:3000)
-npm run dev
+pnpm run dev
 ```
 
 ## 🛠 Available Commands
@@ -101,20 +101,20 @@ npm run dev
 ### Backend Commands (run in `/backend`)
 | Command | Description |
 |---|---|
-| `npm run dev` | Start the backend development server using `tsx` |
-| `npm run build` | Build the backend with TypeScript |
-| `npm run start` | Start the production backend server |
-| `npx drizzle-kit push` | Push schema changes directly to the database |
-| `npx drizzle-kit generate` | Generate SQL migration files |
-| `npx drizzle-kit studio` | Open Drizzle Studio to view your database visually |
+| `pnpm run dev` | Start the backend development server using `tsx` |
+| `pnpm run build` | Build the backend with TypeScript |
+| `pnpm run start` | Start the production backend server |
+| `pnpm exec drizzle-kit push` | Push schema changes directly to the database |
+| `pnpm exec drizzle-kit generate` | Generate SQL migration files |
+| `pnpm exec drizzle-kit studio` | Open Drizzle Studio to view your database visually |
 
 ### Frontend Commands (run in `/frontend`)
 | Command | Description |
 |---|---|
-| `npm run dev` | Start the Next.js development server |
-| `npm run build` | Build the Next.js app for production |
-| `npm run start` | Start the production Next.js server |
-| `npm run lint` | Run ESLint |
+| `pnpm run dev` | Start the Next.js development server |
+| `pnpm run build` | Build the Next.js app for production |
+| `pnpm run start` | Start the production Next.js server |
+| `pnpm run lint` | Run ESLint |
 
 ## 🌐 Deployment (Self-Hosting)
 
