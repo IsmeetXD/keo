@@ -15,6 +15,7 @@ import { authRouter } from './routes/auth.js'
 import { boardsRouter } from './routes/boards.js'
 import { membersRouter } from './routes/members.js'
 import { groupsRouter } from './routes/groups.js'
+import { tasksRouter } from './routes/tasks.js'
 
 app.get('/', (c) => {
   return c.text('Keo API is running!')
@@ -24,6 +25,7 @@ app.route('/api/auth', authRouter)
 app.route('/api/boards', boardsRouter)
 app.route('/api/members', membersRouter)
 app.route('/api/groups', groupsRouter)
+app.route('/api/tasks', tasksRouter)
 
 app.get('/health', (c) => {
   return c.json({ status: 'ok' })

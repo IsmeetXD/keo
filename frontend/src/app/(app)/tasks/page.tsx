@@ -1,7 +1,7 @@
 "use client"
 
-import { useState, useRef, useEffect } from "react"
-import { GripVertical, Plus, Smile, Image as ImageIcon, MessageSquare, MoreHorizontal, Calendar, ArrowRight, Check, X } from "lucide-react"
+import { useState, useRef, useEffect, useCallback } from "react"
+import { GripVertical, Plus, Smile, Image as ImageIcon, MessageSquare, MoreHorizontal, Calendar, ArrowRight, Check, X, Loader2 } from "lucide-react"
 import { cn } from "@/lib/utils"
 
 const EMOJIS = ["📝", "🎯", "🚀", "💡", "✨", "📌", "✅", "🔥", "💻", "🎨", "🌟", "📚"]
@@ -32,6 +32,70 @@ export default function TasksPage() {
   const [comments, setComments] = useState<string[]>([])
   const [showCommentInput, setShowCommentInput] = useState(false)
   const [newComment, setNewComment] = useState("")
+  const [isLoading, setIsLoading] = useState(true)
+
+  // Fetch initial data
+  useEffect(() => {
+    const fetchTasksPage = async () => {
+      const token = localStorage.getItem('token')
+      if (!token) {
+        setIsLoading(false)
+        return
+      }
+      try {
+        const res = await fetch("http://localhost:3001/api/tasks", {
+          headers: { "Authorization": `Bearer ${token}` }
+        })
+        if (res.ok) {
+          const data = await res.json()
+          if (data.page) {
+            setTitle(data.page.title || "")
+            setIcon(data.page.icon || null)
+            setCover(data.page.cover || null)
+            if (data.items && data.items.length > 0) setTasks(data.items.map((i: any) => ({ id: i.id || Math.random().toString(), text: i.text, completed: i.completed })))
+            if (data.comments) setComments(data.comments)
+          }
+        }
+      } catch (e) {
+        console.error(e)
+      } finally {
+        setIsLoading(false)
+      }
+    }
+    fetchTasksPage()
+  }, [])
+
+  // Auto-save debounced
+  const timeoutRef = useRef<NodeJS.Timeout | null>(null)
+  
+  const saveToDb = useCallback(async (currentData: any) => {
+    const token = localStorage.getItem('token')
+    if (!token) return
+    try {
+      await fetch("http://localhost:3001/api/tasks/sync", {
+        method: "POST",
+        headers: { 
+          "Authorization": `Bearer ${token}`,
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify(currentData)
+      })
+    } catch (e) {
+      console.error(e)
+    }
+  }, [])
+
+  useEffect(() => {
+    if (isLoading) return // don't save during initial load
+    if (timeoutRef.current) clearTimeout(timeoutRef.current)
+    timeoutRef.current = setTimeout(() => {
+      saveToDb({ title, cover, icon, items: tasks, comments })
+    }, 1000)
+    
+    return () => {
+      if (timeoutRef.current) clearTimeout(timeoutRef.current)
+    }
+  }, [title, cover, icon, tasks, comments, isLoading, saveToDb])
 
   const handleAddCover = () => {
     // Pick a random cover that isn't the current one (if possible)
@@ -99,6 +163,14 @@ export default function TasksPage() {
         nextInput.focus()
       }
     }, 10)
+  }
+
+  if (isLoading) {
+    return (
+      <div className="w-full h-full flex items-center justify-center">
+        <Loader2 className="w-6 h-6 text-zinc-500 animate-spin" />
+      </div>
+    )
   }
 
   return (

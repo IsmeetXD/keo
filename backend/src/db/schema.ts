@@ -157,3 +157,34 @@ export const groupMessages = pgTable('group_messages', {
   content: text('content').notNull(),
   createdAt: timestamp('created_at').defaultNow().notNull(),
 });
+
+// Tasks Page (Notion-like)
+export const tasksPages = pgTable('tasks_pages', {
+  id: uuid('id').defaultRandom().primaryKey(),
+  userId: uuid('user_id').notNull().references(() => users.id, { onDelete: 'cascade' }).unique(),
+  title: text('title').default(''),
+  icon: text('icon'),
+  cover: text('cover'),
+  createdAt: timestamp('created_at').defaultNow().notNull(),
+  updatedAt: timestamp('updated_at').defaultNow().notNull(),
+});
+
+// Tasks Page Items
+export const tasksPageItems = pgTable('tasks_page_items', {
+  id: uuid('id').defaultRandom().primaryKey(),
+  pageId: uuid('page_id').notNull().references(() => tasksPages.id, { onDelete: 'cascade' }),
+  text: text('text').notNull(),
+  completed: boolean('completed').default(false).notNull(),
+  order: integer('order').notNull(),
+  createdAt: timestamp('created_at').defaultNow().notNull(),
+  updatedAt: timestamp('updated_at').defaultNow().notNull(),
+});
+
+// Tasks Page Comments
+export const tasksPageComments = pgTable('tasks_page_comments', {
+  id: uuid('id').defaultRandom().primaryKey(),
+  pageId: uuid('page_id').notNull().references(() => tasksPages.id, { onDelete: 'cascade' }),
+  userId: uuid('user_id').notNull().references(() => users.id, { onDelete: 'cascade' }),
+  content: text('content').notNull(),
+  createdAt: timestamp('created_at').defaultNow().notNull(),
+});
