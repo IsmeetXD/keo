@@ -4,7 +4,7 @@ import Link from "next/link"
 import Image from "next/image"
 import { useState, useEffect } from "react"
 import { usePathname, useRouter } from "next/navigation"
-import { Bell, Search, LayoutDashboard, CheckSquare, Settings, Users, PanelLeftClose, PanelLeftOpen, LogOut, MessageSquare } from "lucide-react"
+import { Bell, Search, LayoutDashboard, CheckSquare, Settings, Users, PanelLeftClose, PanelLeftOpen, LogOut, MessageSquare, ListTodo } from "lucide-react"
 import { cn } from "@/lib/utils"
 
 export default function AppLayout({ children }: { children: React.ReactNode }) {
@@ -57,6 +57,7 @@ export default function AppLayout({ children }: { children: React.ReactNode }) {
 
   const navItems = [
     { name: "Dashboard", href: "/dashboard", icon: LayoutDashboard },
+    { name: "Tasks", href: "/tasks", icon: ListTodo },
     { name: "Boards", href: "/boards", icon: CheckSquare },
     { name: "Members", href: "/members", icon: Users },
     { name: "Groups", href: "/groups", icon: MessageSquare },
