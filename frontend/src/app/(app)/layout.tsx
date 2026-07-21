@@ -65,7 +65,7 @@ export default function AppLayout({ children }: { children: React.ReactNode }) {
   ]
 
   return (
-    <div className="min-h-screen bg-black text-zinc-200 flex overflow-hidden">
+    <div className="h-screen bg-black text-zinc-200 flex overflow-hidden">
       {/* Sidebar */}
       <aside 
         className={cn(
