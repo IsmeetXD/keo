@@ -7,6 +7,30 @@
     <br />
     The ultimate open-source, self-hostable alternative to Trello, Jira, and Linear.
   </p>
+  <p>
+    <a href="https://github.com/IsmeetXD/keo/blob/main/LICENSE">
+      <img src="https://img.shields.io/github/license/IsmeetXD/keo?style=flat-square&color=blue" alt="License" />
+    </a>
+    <a href="https://github.com/IsmeetXD/keo/stargazers">
+      <img src="https://img.shields.io/github/stars/IsmeetXD/keo?style=flat-square&color=yellow" alt="Stars" />
+    </a>
+    <a href="https://github.com/IsmeetXD/keo/network/members">
+      <img src="https://img.shields.io/github/forks/IsmeetXD/keo?style=flat-square&color=orange" alt="Forks" />
+    </a>
+    <a href="https://github.com/IsmeetXD/keo/issues">
+      <img src="https://img.shields.io/github/issues/IsmeetXD/keo?style=flat-square&color=red" alt="Issues" />
+    </a>
+    <a href="https://github.com/IsmeetXD/keo/pulls">
+      <img src="https://img.shields.io/github/issues-pr/IsmeetXD/keo?style=flat-square&color=green" alt="Pull Requests" />
+    </a>
+  </p>
+  <p>
+    <img src="https://img.shields.io/badge/Next.js-15-black?style=flat-square&logo=next.js" alt="Next.js" />
+    <img src="https://img.shields.io/badge/Hono-Fire-orange?style=flat-square" alt="Hono" />
+    <img src="https://img.shields.io/badge/TypeScript-Ready-blue?style=flat-square&logo=typescript" alt="TypeScript" />
+    <img src="https://img.shields.io/badge/TailwindCSS-38B2AC?style=flat-square&logo=tailwind-css" alt="Tailwind CSS" />
+    <img src="https://img.shields.io/badge/PostgreSQL-336791?style=flat-square&logo=postgresql" alt="PostgreSQL" />
+  </p>
   <br />
 </div>
 
